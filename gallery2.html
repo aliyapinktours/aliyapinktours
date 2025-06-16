@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Explore Tours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f1f6;
+            color: #333;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background-color: #ff4081;
+            padding: 40px 10%;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            header h1 {
+                font-size: 3.5em;
+                margin: 0;
+                color: #f9f1f6;
+            }
+
+        @keyframes smoothAppear {
+            0% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes subtleBounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .menu-btn {
+            font-size: 18px;
+            background-color: #c2185b;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out, background-color 0.3s, border-radius 0.3s;
+            width: 60px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            animation: smoothAppear 1s ease-in-out;
+        }
+
+            .menu-btn:hover {
+                background-color: #a3154a;
+                transform: scale(1.1);
+                border-radius: 15px;
+            }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ff4081;
+            overflow-x: hidden;
+            transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            padding-top: 60px;
+        }
+
+            .sidebar a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 22px;
+                color: #ffffff;
+                display: block;
+                transition: transform 0.3s ease-in-out, color 0.3s;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                    transform: translateX(10px);
+                }
+
+            .sidebar .closebtn {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+                color: white;
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                .sidebar .closebtn:hover {
+                    transform: rotate(90deg);
+                }
+
+        .submenu {
+            display: none;
+            margin-left: 20px;
+        }
+
+            .submenu a {
+                font-size: 18px;
+            }
+
+        nav {
+            background-color: #ff4081;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+            nav a {
+                color: white;
+                margin: 0 25px;
+                font-size: 1.1em;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+                nav a:hover {
+                    color: #ffbbcc;
+                }
+
+
+        /* Image Grid Styles */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .column {
+            flex: 25%;
+            padding: 0 4px;
+            box-sizing: border-box;
+        }
+
+            .column img {
+                width: 100%;
+                vertical-align: middle;
+                padding: 8px 0;
+                border-radius: 5px;
+                transition: transform 0.3s ease;
+            }
+
+                .column img:hover {
+                    transform: scale(1.05);
+                }
+
+        /* Responsive layout - two columns */
+        @media screen and (max-width: 800px) {
+            .column {
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Responsive layout - single column */
+        @media screen and (max-width: 600px) {
+            .column {
+                flex: 100%;
+                max-width: 100%;
+            }
+        }
+
+
+
+
+
+        /* Footer Styles */
+        .footer-bg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url('https://i.postimg.cc/ncYZ1bnz/F.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.8; /* Slightly reduce opacity for better text visibility */
+            color: white;
+            height: 100vh; /* Full screen height */
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        /* Semi-transparent overlay for better text readability */
+        .footer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: -1; /* Put behind the content */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .follow-us {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+            .social-icon:hover {
+                background-color: #ff4081;
+                transform: scale(1.1);
+            }
+
+        .social-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .address,
+        .email,
+        .phone {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .email-link,
+        .phone-link {
+            color: #ff4081;
+            text-decoration: none;
+        }
+
+            .email-link:hover,
+            .phone-link:hover {
+                text-decoration: underline;
+            }
+
+        .privacy-links {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .privacy-link {
+            color: white;
+            text-decoration: none;
+        }
+
+            .privacy-link:hover {
+                color: #ff4081;
+            }
+
+        .copyright {
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: white;
+        }
+
+
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+        }
+
+
+        /* Styling the button */
+        .inquire-btn {
+            position: fixed; /* Keeps button fixed on the screen */
+            right: 20px; /* Positions button on the right side */
+            bottom: 20px; /* Positions button at the bottom */
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #c2185b;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.4s;
+            box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+            /* Hover animation */
+            .inquire-btn:hover {
+                background-color: #a3154a;
+                transform: scale(1.1);
+                border-radius: 15px;
+            }
+
+            /* Click animation */
+            .inquire-btn:active {
+                transform: scale(0.95);
+            }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 onclick="subtleBounceEffect(this)">ALIYA PINK TOURS</h1>
+        <p>Every Step leads to a Soulful Destiny</p>
+    </header>
+
+    <button class="menu-btn" onclick="toggleNav()">☰</button>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+        <a href="index.html">Home</a>
+        <a href="#" onclick="toggleSubmenu(event)">About Us</a>
+        <div class="submenu" id="aboutSubmenu">
+            <a href="about2.html">Our Story</a>
+            <a href="vission.html">Vision & Mission</a>
+            <a href="team2.html">Meet the Team</a>
+        </div>
+        <a href="totalpackages.html">Packages</a>
+        <a href="contact2.html">Contact</a>
+        <a href="gallery2.html">Gallery</a>
+        <a href="select2.html">customize</a>
+    </div>
+
+    <!-- Photo Grid Section -->
+    <div class="row">
+        <div class="column">
+            <img src="https://i.postimg.cc/fbV7BCmg/gallery1.jpg" alt="Wedding">
+            <img src="https://i.postimg.cc/52BWj56T/gallery2.jpg" alt="Rocks">
+            <img src="https://i.postimg.cc/vTnbzJZH/gallery3.jpg" alt="Waterfall">
+            <img src="https://i.postimg.cc/qvhXGQ8D/gallery4.jpg" alt="Paris">
+            <img src="https://i.postimg.cc/4dNYWND4/gallery5.jpg" alt="Nature">
+            <img src="https://i.postimg.cc/8PWLJsDx/gallery6.jpg" alt="Mist">
+
+        </div>
+
+        <div class="column">
+            <img src="https://i.postimg.cc/mgpZTNJ4/gallery8.jpg" alt="Underwater">
+            <img src="https://i.postimg.cc/wjyZsX3g/gallery9.jpg" alt="Ocean">
+            <img src="https://i.postimg.cc/zX5Th8BB/gallery10.png" alt="Wedding">
+            <img src="https://i.postimg.cc/HLQpbDjY/gallery11.jpg" alt="Mountain Skies">
+            <img src="https://i.postimg.cc/jqkrwdv6/gallery12.jpg" alt="Rocks">
+            <img src="https://i.postimg.cc/VN4VxDV9/gallery13.jpg" alt="Underwater">
+        </div>
+
+        <div class="column">
+            <img src="https://i.postimg.cc/QdqDMgzC/gallery14.jpg" alt="Wedding">
+            <img src="https://i.postimg.cc/pTw4CyS3/gallery15.jpg" alt="Rocks">
+            <img src="https://i.postimg.cc/Rhv8y2MT/gallery16.jpg" alt="Waterfall">
+            <img src="https://i.postimg.cc/43T1WV46/gallery17.jpg" alt="Paris">
+            <img src="https://i.postimg.cc/85zMYb26/gallery18.jpg" alt="Nature">
+            <img src="https://i.postimg.cc/jd0QxyNG/gallery19.jpg" alt="Mist">
+            <img src="https://i.postimg.cc/rwd8fRZw/gallery20.jpg" alt="Paris">
+        </div>
+
+        <div class="column">
+            <img src="https://i.postimg.cc/h4kWKZ2c/gallery21.jpg" alt="Underwater">
+            <img src="https://i.postimg.cc/T3ZW069B/gallery22.jpg" alt="Ocean">
+            <img src="https://i.postimg.cc/HL9sMDPw/gallery23.jpg" alt="Wedding">
+            <img src="https://i.postimg.cc/CKhpWZm8/gallery24.jpg" alt="Mountain Skies">
+            <img src="https://i.postimg.cc/y8P8gCGF/gallery25.jpg" alt="Rocks">
+            <img src="https://i.postimg.cc/gjqfSm8s/gallery26.jpg" alt="Underwater">
+            <img src="https://i.postimg.cc/d1Qdk9n0/gallery7.jpg" alt="Paris">
+        </div>
+    </div>
+    <footer class="footer-bg">
+        <div class="footer-overlay"></div>
+        <div class="container">
+            <img src="ap.jpg" alt="aliyapink" class="logo">
+            <p class="follow-us">FOLLOW US</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/1HoZZ2sagf/" class="social-icon"><img src="https://i.postimg.cc/tTh461TS/facebook.png" alt="Facebook" class="social-img"></a>
+                <a href="https://www.instagram.com/aliya_pink_1?utm_source=qr&igsh=N3BsYXJwdGluZW00" class="social-icon"><img src="https://i.postimg.cc/WpHHZ5By/instagram.png" alt="Instagram" class="social-img"></a>
+                <a href="https://www.youtube.com/@ALIYAPINK-h2m5z" class=" social-icon"><img src="https://i.postimg.cc/RhL1gVPG/youtube.png" alt=" youtube" class=" social-img" /></a>
+            </div>
+            <p class="address" style="text-align: left; line-height: 1.5; font-family: Arial, sans-serif; ">Aliya Pink <br /> No 247/2 <br />Kalugalawatta ranavana,<br> Katugasthota</p>
+            <p class="email">Email: <a href="aliyapinktours@gmail.com" class="email-link">aliyapinktours@gmail.com</a></p>
+            <p class="phone">Phone: <a href="tel:(+94)770414574" class="phone-link">(+94) 77 041 4574</a></p>
+            <div class="privacy-links">
+                <a href="index.html" class="privacy-link">Privacy Policy</a> /
+                <a href="packages.html" class="privacy-link">Terms & Conditions</a>
+            </div>
+            <div class="copyright">
+                © 2024 AliyaPink Tours | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Inquire Button -->
+    <button class="inquire-btn" onclick="goToContact()">Inquire</button>
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            if (sidebar.style.width === "250px") {
+                sidebar.style.width = "0";
+            } else {
+                sidebar.style.width = "250px";
+            }
+        }
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            var submenu = document.getElementById("aboutSubmenu");
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+        function subtleBounceEffect(element) {
+            element.style.animation = "subtleBounce 0.8s ease-in-out";
+            setTimeout(() => { element.style.animation = ""; }, 800);
+        }
+        function goToContact() {
+            window.location.href = "contact2.html"; // Change this to your actual contact page URL
+        }
+    </script>
+</body>
+</html>
